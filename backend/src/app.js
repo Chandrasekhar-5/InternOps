@@ -134,6 +134,10 @@ app.register(require("./modules/audit/routes"), {
   prefix: "/api/audit",
 });
 
+app.register(require("./modules/uploads/routes"), {
+  prefix: "/api/uploads",
+});
+
 app.register(require("./modules/analytics/routes"), {
   prefix: "/api/analytics",
 });
