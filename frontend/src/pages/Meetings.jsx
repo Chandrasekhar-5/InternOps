@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
-import { Video, X, Plus, Calendar, Clock, Trash2 } from 'lucide-react';
+import { Video, X, Plus, Calendar, Clock, Trash2, ExternalLink } from 'lucide-react';
 import api from '../lib/axios';
 import useAuthStore from '../store/auth';
 import {
@@ -23,6 +23,7 @@ export default function Meetings() {
     title: '',
     description: '',
     meetingDate: '',
+    meetingUrl: '',
     startTime: '',
     endTime: '',
   });
@@ -54,6 +55,7 @@ export default function Meetings() {
         title: '',
         description: '',
         meetingDate: '',
+        meetingUrl: '',
         startTime: '',
         endTime: '',
       });
@@ -148,6 +150,22 @@ export default function Meetings() {
                 disabled={createMutation.isPending}
               />
             </div>
+
+            <div>
+              <label className="text-xs font-extrabold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-2 block">
+                Meeting Link
+              </label>
+
+              <Input
+                type="url"
+                placeholder="https://meet.google.com/..."
+                value={form.meetingUrl}
+                onChange={(e) =>
+                  setForm({ ...form, meetingUrl: e.target.value })
+                }
+                disabled={createMutation.isPending}
+              />
+              </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
               <div>
@@ -295,6 +313,20 @@ export default function Meetings() {
                   {m.description}
                 </p>
               )}
+              
+              {m.meetingUrl && (
+                <div className="mt-4">
+                <a
+                  href={m.meetingUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 text-sm font-medium text-indigo-600 hover:text-indigo-700 dark:text-indigo-400 dark:hover:text-indigo-300 underline"
+                >
+                  <ExternalLink className="w-4 h-4"></ExternalLink>
+                Join Meeting
+                </a>
+                </div>
+               )}
 
               <div className="flex items-center gap-1.5 text-xs font-bold text-slate-500 dark:text-slate-400 mt-4 pt-4 border-t border-slate-200 dark:border-slate-700">
                 <Clock className="w-3.5 h-3.5 text-slate-400 dark:text-slate-500" />
