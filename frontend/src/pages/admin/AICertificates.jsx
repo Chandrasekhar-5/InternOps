@@ -108,13 +108,13 @@ export default function AICertificates() {
   const availableTonesQuery = useAvailableTones();
   const supportedLanguagesQuery = useSupportedLanguages();
 
-  const toneOptions = (availableTonesQuery.data?.data || DEFAULT_AVAILABLE_TONES).map(
-    (tone) => ({ value: tone, label: tone })
-  );
+  const toneOptions = (
+    availableTonesQuery.data?.data || DEFAULT_AVAILABLE_TONES
+  ).map((tone) => ({ value: tone, label: tone }));
 
-  const languageOptions = (supportedLanguagesQuery.data?.data || DEFAULT_SUPPORTED_LANGUAGES).map(
-    (language) => ({ value: language, label: language })
-  );
+  const languageOptions = (
+    supportedLanguagesQuery.data?.data || DEFAULT_SUPPORTED_LANGUAGES
+  ).map((language) => ({ value: language, label: language }));
 
   const industryOptions = [
     'Technology',
